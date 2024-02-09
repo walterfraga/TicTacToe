@@ -1,12 +1,10 @@
 import numbers
 
-from game.Player import Player
+from game.Player import HumanPlayer, RandomPlayer
 
 
 class TicTacToe:
-    def __init__(self, player1, player2):
-        self.player1 = player1
-        self.player2 = player2
+    def __init__(self):
         self.table = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
     def has_ended(self):
@@ -41,15 +39,15 @@ class TicTacToe:
         print(self.table[6], '|', self.table[7], '|', self.table[8])
         print('')
 
-    def play(self):
+    def play(self, player1, player2):
         self.print_table()
         input_letter = None
         current_player = None
         while not self.has_ended() and self.get_player_has_won() is None:
-            if input_letter is None or current_player == self.player2:
-                current_player = self.player1
+            if input_letter is None or current_player == player2:
+                current_player = player1
             else:
-                current_player = self.player2
+                current_player = player2
 
             while True:
                 input_letter = current_player.get_square()
@@ -73,7 +71,7 @@ class TicTacToe:
 
 
 if __name__ == '__main__':
-    player_1 = Player('X')
-    player_2 = Player('O')
-    tictactoe = TicTacToe(player_1, player_2)
-    tictactoe.play()
+    tictactoe = TicTacToe()
+    player_1 = HumanPlayer('X')
+    player_2 = RandomPlayer('O', tictactoe.table)
+    tictactoe.play(player_1, player_2)
