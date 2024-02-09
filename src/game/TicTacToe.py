@@ -16,16 +16,21 @@ class TicTacToe:
         return True
 
     def get_player_has_won(self):
-        win_sequences = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+        for square in range(3):
+            # Check rows [0,1,2] or [3,4,5] or [6,7,8]
+            if self.table[square * 3] == self.table[square * 3 + 1] == self.table[square * 3 + 2] != -1:
+                return self.table[square * 3]
 
-        for win_sequence in win_sequences:
-            values = ''
-            for seq in win_sequence:
-                values += str(self.table[int(seq)])
-            if values == 'XXX':
-                return 'X'
-            elif values == 'OOO':
-                return 'O'
+            # Check columns [0,3,6] or [1,4,7] or [2,5,8]
+            if self.table[square] == self.table[square + 3] == self.table[square + 6] != -1:
+                return self.table[square]
+
+        # Check diagonals [0,4,8] or [2,4,6]
+        if self.table[0] == self.table[4] == self.table[8] != -1:
+            return self.table[0]
+        if self.table[2] == self.table[4] == self.table[6] != -1:
+            return self.table[2]
+
         return None
 
     def print_table(self):
@@ -68,7 +73,7 @@ class TicTacToe:
 
 
 if __name__ == '__main__':
-    player1 = Player('X')
-    player2 = Player('O')
-    tictactoe = TicTacToe(player1, player2)
+    player_1 = Player('X')
+    player_2 = Player('O')
+    tictactoe = TicTacToe(player_1, player_2)
     tictactoe.play()
