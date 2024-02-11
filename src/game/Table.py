@@ -1,6 +1,3 @@
-import numbers
-
-
 class Table:
     def __init__(self):
         self.table = [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -14,18 +11,27 @@ class Table:
         print('')
 
     def has_unoccupied_positions(self):
-        return self.get_unoccupied_positions().count == 0
+        return len(self.get_unoccupied_positions()) > 0
+
 
     def get_unoccupied_positions(self):
         empty = []
-        for position in self.table:
-            if str(position).isnumeric():
-                empty.append(position)
+        if self.table is not None:
+            for position in self.table:
+                if str(position).isnumeric():
+                    empty.append(position)
         return empty
 
     def is_position_occupied(self, position):
         unoccupied_positions = self.get_unoccupied_positions()
-        return position in unoccupied_positions == False
+        if position in unoccupied_positions:
+            return False
+        return True
+
 
     def is_first_move(self):
-        return self.get_unoccupied_positions().count == 9
+        size = len(self.table)
+        unoccupied_positions = len(self.get_unoccupied_positions())
+        return size == unoccupied_positions
+
+
