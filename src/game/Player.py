@@ -20,34 +20,34 @@ class HumanPlayer(Player):
 
 
 class RandomPlayer(Player):
-    def __init__(self, letter, game):
+    def __init__(self, letter, table):
         super().__init__(letter)
-        self.game = game
+        self.table = table
 
     def get_square(self):
         print('Computer\'s turn ...')
         time.sleep(1)
         while True:
-            random_number = random.randint(0, 8)
-            if isinstance(self.game.table[random_number], numbers.Number):
-                return random_number
+            random_positoin = random.randint(0, 8)
+            if not self.table.is_position_occupied(random_positoin):
+                return random_positoin
 
 
 class SmartPlayer(Player):
-    def __init__(self, letter, game):
+    def __init__(self, letter, table):
         super().__init__(letter)
-        self.game = game
+        self.table = table
 
     def get_square(self):
         print('Computer\'s turn ...')
         time.sleep(1)
-        if self.game.is_first_move():
+        if self.table.is_first_move():
             while True:
                 random_number = random.randint(0, 8)
-                if isinstance(self.game.table[random_number], numbers.Number):
+                if isinstance(self.table[random_number], numbers.Number):
                     return random_number
 
-        remaining_moves = self.game.get_unoccupied_positions()
+        remaining_moves = self.table.get_unoccupied_positions()
         return self.minimax(remaining_moves)
 
     def minimax(self, remaining_moves):

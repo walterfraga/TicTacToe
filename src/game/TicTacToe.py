@@ -1,6 +1,6 @@
 import numbers
 
-from game.Player import HumanPlayer, SmartPlayer
+from game.Player import HumanPlayer, SmartPlayer, RandomPlayer
 from game.Table import Table
 
 
@@ -63,8 +63,8 @@ class TicTacToe:
 
 
 if __name__ == '__main__':
-    tictactoe = TicTacToe(Table())
+    table = Table()
+    tictactoe = TicTacToe(table)
     player_1 = HumanPlayer('X')
-    #player_2 = SmartPlayer('O', tictactoe)
-    player_2 = HumanPlayer('O')
+    player_2 = RandomPlayer('O', table)
     tictactoe.play(player_1, player_2)
