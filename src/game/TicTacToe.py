@@ -1,5 +1,6 @@
 from game.HumanPlayer import HumanPlayer
 from game.RandomPlayer import RandomPlayer
+from game.SmartPlayer import SmartPlayer
 from game.Table import Table
 
 
@@ -46,5 +47,5 @@ if __name__ == '__main__':
     table = Table()
     tictactoe = TicTacToe(table)
     player_1 = HumanPlayer('X')
-    player_2 = RandomPlayer('O', table)
+    player_2 = SmartPlayer('O', table)
     tictactoe.play(player_1, player_2)
