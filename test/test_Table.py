@@ -29,18 +29,18 @@ class TestTable(TestCase):
     def test_should_return_unoccupied_positions(self):
         # Given
         table = Table()
-        table.table = [1, 'X', 3, 'O', 5, 'X', 7, 'O']
+        table.table = [0, 'X', 2, 'O', 4, 'X', 5, 'O', 8]
 
         # When
         result = table.get_unoccupied_positions()
 
         # Then
-        self.assertEqual([1, 3, 5, 7], result)
+        self.assertEqual([0, 2, 4, 5, 8], result)
 
     def test_should_return_has_unoccupied_positions(self):
         # Given
         table = Table()
-        table.table = [1, 'X', 3, 'O', 5, 'X', 7, 'O']
+        table.table = [0, 'X', 2, 'O', 4, 'X', 6, 'O', 8]
 
         # When
         result = table.has_unoccupied_positions()
@@ -95,7 +95,7 @@ class TestTable(TestCase):
     def test_should_return_position_is_occupied(self):
         # Given
         table = Table()
-        table.table = ['X', 2, 3, 4, 5, 6, 7, 8]
+        table.table = ['X', 1, 2, 3, 4, 5, 6, 7, 8]
 
         # When
         result = table.is_position_occupied(0)
@@ -106,7 +106,7 @@ class TestTable(TestCase):
     def test_should_return_is_first_move(self):
         # Given
         table = Table()
-        table.table = [1, 2, 3, 4, 5, 6, 7, 8]
+        table.table = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
         # When
         result = table.is_first_move()
@@ -117,10 +117,65 @@ class TestTable(TestCase):
     def test_should_return_is_not_first_move(self):
         # Given
         table = Table()
-        table.table = [1, 'X', 3, 4, 5, 6, 7, 8]
+        table.table = [0, 'X', 2, 3, 4, 5, 6, 7, 8]
 
         # When
         result = table.is_first_move()
 
         # Then
         self.assertFalse(result)
+
+    def test_should_insert_value_in_position(self):
+        # Given
+        table = Table()
+        table.table = [0, 'X', 2, 3, 4, 5, 6, 7, 8]
+
+        # When
+        table.insert(3, 'X')
+
+        # Then
+        self.assertEqual('X', table.table[3])
+
+    def test_should_return_no_winner(self):
+        # Given
+        table = Table()
+        table.table = [0, 'X', 2, 3, 4, 5, 6, 7, 8]
+
+        # When
+        result = table.get_winner()
+
+        # Then
+        self.assertIsNone(result)
+
+    def test_should_row_winner(self):
+        # Given
+        table = Table()
+        table.table = ['O', 'O', 'O', 3, 4, 5, 6, 7, 8]
+
+        # When
+        result = table.get_winner()
+
+        # Then
+        self.assertEqual('O', result)
+
+    def test_should_return_column_winner(self):
+        # Given
+        table = Table()
+        table.table = ['X', 1, 2, 'X', 4, 5, 'X', 7, 8]
+
+        # When
+        result = table.get_winner()
+
+        # Then
+        self.assertEqual('X', result)
+
+    def test_should_return_diagonal_winner(self):
+        # Given
+        table = Table()
+        table.table = ['O', 1, 2, 3, 'O', 5, 6, 7, 'O']
+
+        # When
+        result = table.get_winner()
+
+        # Then
+        self.assertEqual('O', result)
