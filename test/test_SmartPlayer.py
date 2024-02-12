@@ -1,16 +1,15 @@
 from unittest import TestCase
 from unittest.mock import Mock, MagicMock
 
-from game.RandomPlayer import RandomPlayer
+from game.SmartPlayer import SmartPlayer
 
 
-class TestRandomPlayer(TestCase):
-
-    def test_should_return_only_available_move(self):
+class TestSmartPlayer(TestCase):
+    def test_should_return_random_move_when_first_move(self):
         # Given
         table = Mock()
-        table.is_position_occupied = MagicMock(return_value=False)
-        player = RandomPlayer('X', table)
+        table.is_first_move = MagicMock(return_value=True)
+        player = SmartPlayer('X', table)
         # When
         position = player.get_move()
         # Then

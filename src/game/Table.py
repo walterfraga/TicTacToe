@@ -13,7 +13,6 @@ class Table:
     def has_unoccupied_positions(self):
         return len(self.get_unoccupied_positions()) > 0
 
-
     def get_unoccupied_positions(self):
         empty = []
         if self.table is not None:
@@ -28,7 +27,6 @@ class Table:
             return False
         return True
 
-
     def is_first_move(self):
         size = len(self.table)
         unoccupied_positions = len(self.get_unoccupied_positions())
@@ -37,10 +35,14 @@ class Table:
     def insert(self, position, value):
         self.table[int(position)] = value
 
+    def remove(self, position):
+        self.table[int(position)] = int(position)
+
     def get_winner(self):
         for position in range(3):
             # Check rows [0,1,2] or [3,4,5] or [6,7,8]
-            if self.table[position * 3] == self.table[position * 3] == self.table[position * 3 + 1] == self.table[position * 3 + 2] != -1:
+            if self.table[position * 3] == self.table[position * 3] == self.table[position * 3 + 1] == self.table[
+                position * 3 + 2] != -1:
                 return self.table[position * 3]
 
             # Check columns [0,3,6] or [1,4,7] or [2,5,8]
