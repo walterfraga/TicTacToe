@@ -8,7 +8,7 @@ class TicTacToe:
         self.table = table
 
     def play(self, player1, player2):
-        self.table.print()
+        print(self.table.get_printable_table())
         position = None
         current_player = None
         while self.table.has_available_positions() and self.table.get_winner() is None:
@@ -24,7 +24,7 @@ class TicTacToe:
                     break
                 else:
                     print(position, ' is an invalid position')
-            self.table.print()
+            print(self.table.get_printable_table())
         winner = self.table.get_winner()
         if winner is None:
             print('It is a draw')

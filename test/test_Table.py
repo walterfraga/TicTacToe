@@ -1,3 +1,5 @@
+import io
+import sys
 from unittest import TestCase
 
 from game.Table import Table
@@ -180,7 +182,7 @@ class TestTable(TestCase):
         # Then
         self.assertEqual('X', result)
 
-    def test_should_return_diagonal_winner(self):
+    def test_should_return_diagonal_1_winner(self):
         # Given
         table = Table()
         table.table = ['O', 1, 2, 3, 'O', 5, 6, 7, 'O']
@@ -190,3 +192,26 @@ class TestTable(TestCase):
 
         # Then
         self.assertEqual('O', result)
+
+    def test_should_return_diagonal_2_winner(self):
+        # Given
+        table = Table()
+        table.table = [0, 1, 'X', 3, 'X', 5, 'X', 7, 8]
+
+        # When
+        result = table.get_winner()
+
+        # Then
+        self.assertEqual('X', result)
+
+    def test_should_print_table(self):
+        # Given
+        table = Table()
+
+        # When
+        printed_table = table.get_printable_table()
+
+        # Then
+        self.assertEqual("0|1|2\n-----\n3|4|5\n-----\n6|7|8", printed_table)
+
+

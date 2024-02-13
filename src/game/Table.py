@@ -2,13 +2,13 @@ class Table:
     def __init__(self):
         self.table = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-    def print(self):
-        print(self.table[0], '|', self.table[1], '|', self.table[2])
-        print('---------')
-        print(self.table[3], '|', self.table[4], '|', self.table[5])
-        print('---------')
-        print(self.table[6], '|', self.table[7], '|', self.table[8])
-        print('')
+    def get_printable_table(self):
+        print_table = str(self.table[0]) + "|" + str(self.table[1]) + "|" + str(self.table[2])
+        print_table += "\n-----\n"
+        print_table += str(self.table[3]) + "|" + str(self.table[4]) + "|" + str(self.table[5])
+        print_table += "\n-----\n"
+        print_table += str(self.table[6]) + "|" + str(self.table[7]) + "|" + str(self.table[8] )
+        return print_table
 
     def has_available_positions(self):
         return len(self.get_available_positions()) > 0
