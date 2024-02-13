@@ -10,10 +10,10 @@ class Table:
         print(self.table[6], '|', self.table[7], '|', self.table[8])
         print('')
 
-    def has_unoccupied_positions(self):
-        return len(self.get_unoccupied_positions()) > 0
+    def has_available_positions(self):
+        return len(self.get_available_positions()) > 0
 
-    def get_unoccupied_positions(self):
+    def get_available_positions(self):
         empty = []
         if self.table is not None:
             for position in self.table:
@@ -21,16 +21,16 @@ class Table:
                     empty.append(position)
         return empty
 
-    def is_position_occupied(self, position):
-        unoccupied_positions = self.get_unoccupied_positions()
-        if position in unoccupied_positions:
-            return False
-        return True
+    def is_position_available(self, position):
+        available_positions = self.get_available_positions()
+        if position in available_positions:
+            return True
+        return False
 
     def is_first_move(self):
         size = len(self.table)
-        unoccupied_positions = len(self.get_unoccupied_positions())
-        return size == unoccupied_positions
+        available_positions = len(self.get_available_positions())
+        return size == available_positions
 
     def insert(self, position, value):
         self.table[int(position)] = value

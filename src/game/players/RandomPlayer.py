@@ -14,5 +14,5 @@ class RandomPlayer(Player):
         time.sleep(1)
         while True:
             random_position = random.randint(0, 8)
-            if not self.table.is_position_occupied(random_position):
+            if self.table.is_position_available(random_position):
                 return random_position

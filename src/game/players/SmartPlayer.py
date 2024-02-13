@@ -2,7 +2,7 @@ import random
 import time
 import math
 
-from game.models.Result import Result
+from game.models.PositionResult import PositionResult
 from game.players.Player import Player
 from game.Table import Table
 
@@ -28,29 +28,29 @@ class SmartPlayer(Player):
         other_player = 'O' if letter == 'X' else 'X'
 
         if copy_table.get_winner() == other_player:
-            number_unoccupied_positions = len(copy_table.get_unoccupied_positions())
-            weight = 1 * (number_unoccupied_positions + 1) if other_player == max_player else -1 * (
-                    number_unoccupied_positions + 1)
-            return Result(None, weight)
-        elif not copy_table.get_unoccupied_positions():
-            return Result(None, 0)
+            number_available_positions = len(copy_table.get_available_positions())
+            weight = 1 * (number_available_positions + 1) if other_player == max_player else -1 * (
+                    number_available_positions + 1)
+            return PositionResult(None, weight)
+        elif not copy_table.get_available_positions():
+            return PositionResult(None, 0)
 
         if letter == max_player:
-            result = Result(None, -math.inf)
+            position_result = PositionResult(None, -math.inf)
         else:
-            result = Result(None, math.inf)
+            position_result = PositionResult(None, math.inf)
 
-        for possible_move in copy_table.get_unoccupied_positions():
+        for possible_move in copy_table.get_available_positions():
             copy_table.insert(possible_move, letter)
-            sim_score = self.minimax(copy_table, other_player)
+            simulate_result = self.minimax(copy_table, other_player)
 
             copy_table.remove(possible_move)
-            sim_score.position = possible_move
+            simulate_result.position = possible_move
 
             if letter == max_player:
-                if sim_score.weight > result.weight:
-                    result = sim_score
+                if simulate_result.result > position_result.result:
+                    position_result = simulate_result
             else:
-                if sim_score.weight < result.weight:
-                    result = sim_score
-        return result
+                if simulate_result.result < position_result.result:
+                    position_result = simulate_result
+        return position_result

@@ -11,7 +11,7 @@ class TicTacToe:
         self.table.print()
         position = None
         current_player = None
-        while self.table.has_unoccupied_positions() and self.table.get_winner() is None:
+        while self.table.has_available_positions() and self.table.get_winner() is None:
             if position is None or current_player == player2:
                 current_player = player1
             else:
@@ -35,7 +35,7 @@ class TicTacToe:
         if str(input_letter).isnumeric():
             position = int(input_letter)
             if position < 9:
-                return not self.table.is_position_occupied(position)
+                return self.table.is_position_available(position)
         return False
 
 
