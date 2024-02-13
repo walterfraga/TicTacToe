@@ -1,5 +1,3 @@
-import io
-import sys
 from unittest import TestCase
 
 from game.Table import Table
@@ -50,7 +48,7 @@ class TestTable(TestCase):
         # Then
         self.assertTrue(result)
 
-    def test_should_return_has_no_availablepositions(self):
+    def test_should_return_has_no_available_positions(self):
         # Given
         table = Table()
         table.table = ['X', 'O', 'X', 'O']
@@ -213,5 +211,4 @@ class TestTable(TestCase):
 
         # Then
         self.assertEqual("0|1|2\n-----\n3|4|5\n-----\n6|7|8", printed_table)
-
 

@@ -7,7 +7,7 @@ class Table:
         print_table += "\n-----\n"
         print_table += str(self.table[3]) + "|" + str(self.table[4]) + "|" + str(self.table[5])
         print_table += "\n-----\n"
-        print_table += str(self.table[6]) + "|" + str(self.table[7]) + "|" + str(self.table[8] )
+        print_table += str(self.table[6]) + "|" + str(self.table[7]) + "|" + str(self.table[8])
         return print_table
 
     def has_available_positions(self):
