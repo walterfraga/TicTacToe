@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import Mock, MagicMock
 
-from game.RandomPlayer import RandomPlayer
+from game.players.RandomPlayer import RandomPlayer
 
 
 class TestRandomPlayer(TestCase):

@@ -1,10 +1,6 @@
-from game.HumanPlayer import HumanPlayer
-from game.RandomPlayer import RandomPlayer
-from game.SmartPlayer import SmartPlayer
+from game.players.HumanPlayer import HumanPlayer
+from game.players.SmartPlayer import SmartPlayer
 from game.Table import Table
-
-
-
 
 
 class TicTacToe:
@@ -44,8 +40,8 @@ class TicTacToe:
 
 
 if __name__ == '__main__':
-    table = Table()
-    tictactoe = TicTacToe(table)
+    tictactoe_table = Table()
+    tictactoe = TicTacToe(tictactoe_table)
     player_1 = HumanPlayer('X')
-    player_2 = SmartPlayer('O', table)
+    player_2 = SmartPlayer('O', tictactoe_table)
     tictactoe.play(player_1, player_2)

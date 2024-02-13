@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import Mock, MagicMock
 
-from game.SmartPlayer import SmartPlayer
+from game.players.SmartPlayer import SmartPlayer
 
 
 class TestSmartPlayer(TestCase):

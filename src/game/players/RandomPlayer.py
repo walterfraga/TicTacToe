@@ -1,7 +1,7 @@
 import random
 import time
 
-from game.Player import Player
+from game.players.Player import Player
 
 
 class RandomPlayer(Player):
